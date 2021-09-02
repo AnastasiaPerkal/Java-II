@@ -29,4 +29,12 @@ public ModelAndView index(Model model) {
     model.addAttribute("message", message);
     return modelAndView;
     }
+    @RequestMapping(value = {"/allalbums"}, method = RequestMethod.GET)
+    public ModelAndView albumList(Model model)
+    {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("albumlist");
+        model.addAttribute("albums", albums);
+        return modelAndView;
+    }
 }
