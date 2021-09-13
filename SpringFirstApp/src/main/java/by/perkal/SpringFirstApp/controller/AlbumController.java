@@ -2,6 +2,7 @@ package by.perkal.SpringFirstApp.controller;
 
 import by.perkal.SpringFirstApp.forms.AlbumForm;
 import by.perkal.SpringFirstApp.model.Album;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Controller public class AlbumController {
     private static List<Album> albums = new ArrayList<Album>();
     static int id = 0;
@@ -32,6 +34,7 @@ import java.util.Optional;
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
         model.addAttribute("message", message);
+        log.info("/index was called");
         return modelAndView;
     }
 
@@ -40,6 +43,7 @@ import java.util.Optional;
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("albumlist");
         model.addAttribute("albums", albums);
+        log.info("/allalbums was called");
         return modelAndView;
     }
 
@@ -51,13 +55,14 @@ import java.util.Optional;
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/save"}, method = RequestMethod.GET)
-    public ModelAndView saveEditChanges(Model model) {
-        ModelAndView modelAndView = new ModelAndView("addalbum");
-        AlbumForm albumForm = new AlbumForm();
-        model.addAttribute("albumform", albumForm);
-        return modelAndView;
-    }
+//    @RequestMapping(value = {"/save"}, method = RequestMethod.GET)
+//    public ModelAndView saveEditChanges(Model model) {
+//        ModelAndView modelAndView = new ModelAndView("addalbum");
+//        AlbumForm albumForm = new AlbumForm();
+//        model.addAttribute("albumform", albumForm);
+//        log.info("/save was called");
+//        return modelAndView;
+//    }
 
     // @PostMapping("/addbook") //GetMapping("/")
     @RequestMapping(value = {"/addalbum"}, method = RequestMethod.POST)
