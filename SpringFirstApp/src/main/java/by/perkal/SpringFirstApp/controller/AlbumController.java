@@ -52,6 +52,7 @@ import java.util.Optional;
         ModelAndView modelAndView = new ModelAndView("addalbum");
         AlbumForm albumForm = new AlbumForm();
         model.addAttribute("albumform", albumForm);
+        log.info("/addalbum was called");
         return modelAndView;
     }
 
@@ -86,7 +87,7 @@ import java.util.Optional;
         ModelAndView modelAndView = new ModelAndView("albumlist");
         albums.removeIf(x -> x.getId() == id);
         model.addAttribute("albums", albums);
-       // log.info("person with id = " + id + " has been deleted");
+       log.info("person with id = " + id + " has been deleted");
         return modelAndView;
     }
 
@@ -99,7 +100,7 @@ import java.util.Optional;
             model.addAttribute("id", personToEdit.getId());
             AlbumForm personForm = new AlbumForm(personToEdit.getTitle(), personToEdit.getAuthor());
             model.addAttribute("album_form", personForm);
-           // log.info("going to edit page");
+            log.info("going to edit page");
         }
         return modelAndView;
     }
@@ -118,7 +119,7 @@ import java.util.Optional;
                 albumToEdit.setTitle(newTitle);
             }
             model.addAttribute("albums", albums);
-           // log.info("person with id = " + id + " has been edited");
+           log.info("person with id = " + id + " has been edited");
             return modelAndView;
         }
         model.addAttribute("errorMessage", errorMessage);
