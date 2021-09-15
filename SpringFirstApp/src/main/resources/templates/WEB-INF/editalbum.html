@@ -6,21 +6,24 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 </head>
 <body>
+<h1>Edit album:</h1>
+
 <div class="container">
-    <h1>Edit album:</h1>
     <form th:action="@{/editalbum(id=${id})}"
           th:object="${album_form}" method="POST">
-        <p>Title:
+        <h5>Title:
             <label>
                 <input type="text" th:field="*{title}"/>
             </label>
-        </p>
-        <p>Author:
+        </h5>
+        <h5>Author:
             <label>
                 <input type="text" th:field="*{author}"/>
             </label>
-        </p>
-        <input class ="button-main-page" type="submit" value="Save" />
+        </h5>
+        <button type="submit">
+            Save
+        </button>
     </form>
 </div>
 <div th:if="${errorMessage}" th:utext="${errorMessage}"

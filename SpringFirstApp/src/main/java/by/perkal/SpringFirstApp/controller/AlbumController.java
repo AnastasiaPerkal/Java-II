@@ -18,18 +18,18 @@ import java.util.Optional;
     static int id = 0;
 
     static {
-        albums.add(new Album(id++,"Full Stack Development with JHipster", "Deepu K Sasidharan, Sendil Kumar N"));
-        albums.add(new Album(id++,"Pro Spring Security", "Carlo Scarioni, Massimo Nardone"));
+        albums.add(new Album(id++,"Shivers", "Ed Sheeran"));
+        albums.add(new Album(id++,"Arcadia", "Lana Del Ray"));
     }
 
-    // // Вводится (inject) из application.properties.
+    // Вводится (inject) из application.properties.
     @Value("${welcome.message}")
     private String message;
 
     @Value("${error.message}")
     private String errorMessage;
 
-    @RequestMapping(value = {"/", "/index"}, method = RequestMethod.GET)
+    @GetMapping(value = {"/", "/index"})
     public ModelAndView index(Model model) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("index");
@@ -38,7 +38,7 @@ import java.util.Optional;
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/allalbums"}, method = RequestMethod.GET)
+    @GetMapping(value = {"/allalbums"})
     public ModelAndView albumList(Model model) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("albumlist");
@@ -47,8 +47,8 @@ import java.util.Optional;
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/addalbum"}, method = RequestMethod.GET)
-    public ModelAndView showAddPersonPage(Model model) {
+    @GetMapping(value = {"/addalbum"})
+    public ModelAndView showAddAlbumPage(Model model) {
         ModelAndView modelAndView = new ModelAndView("addalbum");
         AlbumForm albumForm = new AlbumForm();
         model.addAttribute("albumform", albumForm);
@@ -56,18 +56,8 @@ import java.util.Optional;
         return modelAndView;
     }
 
-//    @RequestMapping(value = {"/save"}, method = RequestMethod.GET)
-//    public ModelAndView saveEditChanges(Model model) {
-//        ModelAndView modelAndView = new ModelAndView("addalbum");
-//        AlbumForm albumForm = new AlbumForm();
-//        model.addAttribute("albumform", albumForm);
-//        log.info("/save was called");
-//        return modelAndView;
-//    }
-
-    // @PostMapping("/addbook") //GetMapping("/")
-    @RequestMapping(value = {"/addalbum"}, method = RequestMethod.POST)
-    public ModelAndView savePerson(Model model, @ModelAttribute("albumform") AlbumForm albumForm) {
+    @PostMapping(value = {"/addalbum"})
+    public ModelAndView saveAlbum(Model model, @ModelAttribute("albumform") AlbumForm albumForm) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("albumlist");
         String title = albumForm.getTitle();
@@ -83,30 +73,30 @@ import java.util.Optional;
         return modelAndView;
     }
     @GetMapping("/deletealbum")
-    public ModelAndView deletePerson(Model model, @RequestParam int id) {
+    public ModelAndView deleteAlbum(Model model, @RequestParam int id) {
         ModelAndView modelAndView = new ModelAndView("albumlist");
         albums.removeIf(x -> x.getId() == id);
         model.addAttribute("albums", albums);
-       log.info("person with id = " + id + " has been deleted");
+       log.info("album with id = " + id + " has been deleted");
         return modelAndView;
     }
 
     @GetMapping("/editalbum")
-    public ModelAndView showEditPersonPage(Model model, @RequestParam int id) {
+    public ModelAndView showEditAlbumPage(Model model, @RequestParam int id) {
         ModelAndView modelAndView = new ModelAndView("editalbum");
-        Optional<Album> optionalPerson = albums.stream().filter(a -> a.getId() == id).findFirst();
-        if (optionalPerson.isPresent()) {
-            Album personToEdit = optionalPerson.get();
-            model.addAttribute("id", personToEdit.getId());
-            AlbumForm personForm = new AlbumForm(personToEdit.getTitle(), personToEdit.getAuthor());
-            model.addAttribute("album_form", personForm);
+        Optional<Album> optionalAlbum = albums.stream().filter(a -> a.getId() == id).findFirst();
+        if (optionalAlbum.isPresent()) {
+            Album albumToEdit = optionalAlbum.get();
+            model.addAttribute("id", albumToEdit.getId());
+            AlbumForm albumForm = new AlbumForm(albumToEdit.getTitle(), albumToEdit.getAuthor());
+            model.addAttribute("album_form", albumForm);
             log.info("going to edit page");
         }
         return modelAndView;
     }
 
     @PostMapping("/editalbum")
-    public ModelAndView saveEditedPerson(Model model, @ModelAttribute("album_form") AlbumForm albumForm, @RequestParam int id) {
+    public ModelAndView saveEditedAlbum(Model model, @ModelAttribute("album_form") AlbumForm albumForm, @RequestParam int id) {
         ModelAndView modelAndView = new ModelAndView();
         String newAuthor = albumForm.getAuthor();
         String newTitle = albumForm.getTitle();
@@ -119,7 +109,7 @@ import java.util.Optional;
                 albumToEdit.setTitle(newTitle);
             }
             model.addAttribute("albums", albums);
-           log.info("person with id = " + id + " has been edited");
+           log.info("album with id = " + id + " has been edited");
             return modelAndView;
         }
         model.addAttribute("errorMessage", errorMessage);

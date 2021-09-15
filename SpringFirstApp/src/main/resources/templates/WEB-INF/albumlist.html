@@ -9,13 +9,12 @@
     <body>
         <h1>Album List</h1>
         <h2> <a href="addalbum">Add new album</a> </h2>
-        <h2> <a href="editalbum">Edit album</a> </h2>
         <br/><br/>
         <div class="container">
-            <table class ="container" border="1">
+            <table>
                 <tr>
-                    <th><h1>Title</h1></th>
-                    <th><h1>Author</h1></th>
+                    <th>Title</th>
+                    <th>Author</th>
                 </tr>
                 <tr th:each ="album : ${albums}">
                     <td th:utext="${album.title}">...</td>
