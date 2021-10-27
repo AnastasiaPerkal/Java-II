@@ -14,3 +14,5 @@
 2021-10-27 16:31:02 INFO  LogAspect:30 - after execution(ModelAndView by.perkal.controller.SubjectController.showSubjects(Model))
 2021-10-27 23:22:57 INFO  LogAspect:26 - before execution(ModelAndView by.perkal.controller.SubjectController.showSubjects(Model)), args=[{}]
 2021-10-27 23:22:58 INFO  LogAspect:30 - after execution(ModelAndView by.perkal.controller.SubjectController.showSubjects(Model))
+2021-10-27 23:51:02 INFO  LogAspect:25 - beforeshowSubjectsController execution(ModelAndView by.perkal.controller.SubjectController.showSubjects(Model))
+2021-10-27 23:51:03 INFO  LogAspect:29 - beforeshowSubjectsController execution(ModelAndView by.perkal.controller.SubjectController.showSubjects(Model))
