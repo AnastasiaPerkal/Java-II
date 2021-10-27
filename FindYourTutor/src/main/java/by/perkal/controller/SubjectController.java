@@ -16,7 +16,7 @@ public class SubjectController {
     private SubjectService service;
 
     @GetMapping(value = {"/subjects"})
-    public ModelAndView adminMain(Model model) {
+    public ModelAndView showSubjects(Model model) {
         List<Subject> list = service.listAll();
         ModelAndView mav = new ModelAndView("subjects");
         mav.addObject("subjectList", list);

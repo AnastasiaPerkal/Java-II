@@ -1,8 +1,11 @@
 package by.perkal.model;
 
+import by.perkal.validator.ContactNumber;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -23,9 +26,13 @@ public class Offer {
     @Column
     private double price;
 
+    @Max(value = 255, message = "Description can't be longer that 255 characters")
     @Column
     private String description;
 
+    @NotNull(message = "Number can't be NULL")
+    @Max(value = 12, message = "Number can't be longer that 12 characters")
+    @ContactNumber(message = "{valid.contactnumber.contactnumber}")
     @Column
     private String contactNumber;
 

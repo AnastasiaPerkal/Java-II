@@ -1,5 +1,6 @@
 package by.perkal.model;
 
+import by.perkal.validator.Password;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "Users")
@@ -19,9 +21,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Size(min = 5, max = 50, message = "Login must contain from 5 to 50 characters")
     @Column
     private String login;
 
+    @Password(message = "{valid.password.password}")
     @Column
     private String password;
 
