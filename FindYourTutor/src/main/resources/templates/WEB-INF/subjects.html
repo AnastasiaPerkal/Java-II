@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Subjects</title>
+</head>
+<body>
+<div class="container">
+    <h1>Subjects</h1>
+    <div class="container">
+        <table class ="container" border="1">
+            <tr>
+                <th><h1>Id</h1></th>
+                <th><h1>Title</h1></th>
+            </tr>
+            <tr th:each ="subject : ${subjectList}">
+                <td th:utext="${subject.id}">...</td>
+                <td th:utext="${subject.name}">...</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
