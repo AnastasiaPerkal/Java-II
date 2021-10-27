@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit - Offers</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-4 container">
+            <h3 style="padding: 10px;">Edit existing offer</h3>
+            <form th:object="${offer}" th:action="@{/editoffer}" method="POST"  class="col rounded bg-light" style=" padding: 10px;">
+                <div class="form-group">
+                    <label for="offerduration">Duration</label>
+                    <input type="text" name="offerduration" id="offerduration" class="form-control" th:field="*{duration}">
+                    <div style="color:red" th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}">duration Error</div>
+                </div>
+                <div class="form-group">
+                    <label for="offerrating">Rating</label>
+                    <input type="text" name="offerrating" id="offerrating" class="form-control" th:field="*{rating}">
+                    <div style="color:red" th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}">rating Error</div>
+                </div>
+                <div class="form-group">
+                    <label for="offerprice">Price</label>
+                    <input type="text" name="offerprice" id="offerprice" class="form-control" th:field="*{price}">
+                    <div style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">price Error</div>
+                </div>
+                <div class="form-group">
+                    <label for="offerdescription">Description</label>
+                    <input type="text" name="offerdescription" id="offerdescription" class="form-control" th:field="*{description}">
+                    <div style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">description Error</div>
+                </div>
+                <div class="form-group">
+                    <label for="offercontactnumber">Contact Number</label>
+                    <input type="text" name="offercontactnumber" id="offercontactnumber" class="form-control" th:field="*{contactNumber}">
+                    <div style="color:red" th:if="${#fields.hasErrors('contactNumber')}" th:errors="*{contactNumber}">number Error</div>
+                </div>
+                <input type="submit" value="Add" class="btn btn-success"/>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
