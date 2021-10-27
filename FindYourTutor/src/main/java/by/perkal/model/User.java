@@ -2,6 +2,8 @@ package by.perkal.model;
 
 import by.perkal.validator.Password;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "Users")
 @Data
@@ -39,29 +43,5 @@ public class User {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Role getRoleEntity() {
-        return roleEntity;
-    }
-
-    public void setRoleEntity(Role roleEntity) {
-        this.roleEntity = roleEntity;
     }
 }

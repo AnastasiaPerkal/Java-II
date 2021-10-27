@@ -17,16 +17,15 @@ public class LogAspect {
     Logger logger=Logger.getLogger(LogAspect.class);
 
     @Pointcut("execution(public * by.perkal.controller.SubjectController.*(..))")
-    public void callAtDisciplineController() {
+    public void showSubjectsController() {
     }
 
-    @Before("callAtDisciplineController()")
-    public void beforeCallMethod(JoinPoint jp) {
-        String args = Arrays.stream(jp.getArgs()).map(a -> a.toString()).collect(Collectors.joining(","));
-        logger.info("before " + jp.toString() + ", args=[" + args + "]");
+    @Before("showSubjectsController()")
+    public void beforeshowSubjectsController(JoinPoint jp) {
+        logger.info("beforeshowSubjectsController " + jp.toString());
     }
-    @After("callAtDisciplineController()")
-    public void afterCallAt(JoinPoint jp) {
-        logger.info("after " + jp.toString());
+    @After("showSubjectsController()")
+    public void aftershowSubjectsController(JoinPoint jp) {
+        logger.info("beforeshowSubjectsController " + jp.toString());
     }
 }
